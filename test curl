@@ -1,0 +1,42 @@
+api_base="https://integrate-azure-openai-into-app.openai.azure.com/"
+api_key="***"
+deployment_id="ownDataInDeployment"
+search_endpoint="https://dg-searchservice-b.search.windows.net"
+search_key="***"
+search_index="dfo-srs-index"
+curl -i -X POST $api_base/openai/deployments/$deployment_id/extensions/chat/completions?api-version=2023-08-01-preview \
+  -H "Content-Type: application/json" \
+  -H "api-key: $api_key" \
+  -d \
+'{
+  "dataSources": [
+    {
+      "type": "AzureCognitiveSearch",
+      "parameters": {
+        "endpoint": "'$search_endpoint'",
+        "indexName": "'$search_index'",
+        "semanticConfiguration": "default",
+        "queryType": "simple",
+        "fieldsMapping": {},
+        "inScope": true,
+        "roleInformation": "Du er en DFØ agent og kan alt om økonomi i offentlig sektor. \nDu skal svare bassert på data du har på best måte mulig, svar på norsk",
+        "filter": null,
+        "strictness": 3,
+        "topNDocuments": 5,
+        "key": "'$search_key'"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "Du er en DFØ agent og kan alt om økonomi i offentlig sektor. \nDu skal svare bassert på data du har på best måte mulig, svar på norsk"
+    }
+  ],
+  "deployment": "ownDataInDeployment",
+  "temperature": 0,
+  "top_p": 1,
+  "max_tokens": 800,
+  "stop": null,
+  "stream": true
+}'

@@ -1,0 +1,48 @@
+<!doctype html>
+<head>
+    <title>Hello Azure - Python Quickstart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<html>
+   <body>
+     <main>
+        <div class="px-4 py-3 my-2 text-center">
+            <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/azure-icon.svg') }}" alt="Azure Logo" width="192" height="192"/>
+            <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+            <h1 class="display-6 fw-bold text-primary">Welcome to Øva-ChatGPT</h1>
+          </div>
+        <div class="col-md-6 mx-auto text-center" id="DisplayChat">
+        </div>
+
+        </div>
+        <div class="col-md-6 mx-auto text-center">
+            <label for="name" class="form-label fw-bold fs-5">Ask me something?</label>
+
+            <!-- <p class="lead mb-2">Could you please tell me your name?</p> -->
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
+                <input type="text" class="form-control" id="Input_Question" name="question" style="max-width: 256px;">
+              </div>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-2">
+              <button type="submit" id="Btn_SendQuestion" class="btn btn-primary btn-lg px-4 gap-3">Say Hello</button>
+            </div>
+            <div id="chat-container">
+                {{ chat }}
+            </div>
+        </div>
+     </main>
+     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.7.1.js') }}"></script>
+     <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+   <template id="newQA">
+      <div class="question container">
+          <h4 class="userdiv">User:</h4>
+          <div class="contentdiv">Bla bla</div>
+      </div>
+       <div class="answer container">
+           <h4>Bot:</h4>
+           <div class="botcontent">Bla bla</div>
+       </div>
+    </template>
+   </body>
+</html>
